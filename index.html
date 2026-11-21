@@ -552,7 +552,7 @@ let actx = null, jouer = false, minut = null;
 const notes = [[392, 1], [392, 1], [440, 2], [392, 2], [523, 2], [494, 4], [392, 1], [392, 1], [440, 2], [392, 2], [587, 2], [523, 4], [392, 1], [392, 1], [784, 2], [659, 2], [523, 2], [494, 2], [440, 4], [698, 1], [698, 1], [659, 2], [523, 2], [587, 2], [523, 4]];
 function melodie() {
 if (!jouer) return; let t = actx.currentTime + .05; const u = .28;
-notes.forEach(([f, d]) => { const o = actx.createOscillator(), g = actx.createGain(); o.type = "sine"; o.frequency.value = f; g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(.08, t + .03); g.gain.exponentialRampToValueAtTime(.001, t + d * u * .95); o.connect(g).connect(actx.destination); o.start(t); o.stop(t + d * u); t += d * u; });
+notes.forEach(([f, d]) => { const o = actx.createOscillator(), g = actx.createGain(); o.type = "triangle"; o.frequency.value = f; g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(.32, t + .03); g.gain.exponentialRampToValueAtTime(.001, t + d * u * .95); o.connect(g).connect(actx.destination); o.start(t); o.stop(t + d * u); t += d * u; });
 minut = setTimeout(melodie, (t - actx.currentTime + 2) * 1000);
 }
 function majBouton() { $("musique").textContent = jouer ? "🎵" : "🔇"; $("musique").setAttribute("aria-label", jouer ? "Couper la musique" : "Activer la musique"); }
