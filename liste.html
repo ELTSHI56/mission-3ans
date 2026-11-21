@@ -157,7 +157,7 @@ $("lignes").innerHTML = liste.map((d, i) => `<tr>
 <td class="act"><button class="suppr" data-id="${d.id}" title="Supprimer (doublon)" aria-label="Supprimer la réponse de ${esc(d.nom)}">🗑️</button></td></tr>`).join("");
 }
 $("porte").addEventListener("submit", async e => {
-e.preventDefault(); code = $("code").value.trim().toUpperCase(); $("erreur").textContent = "";
+e.preventDefault(); code = $("code").value.trim().replace(/\s+/g, " ").toUpperCase(); if (code.replace(/ /g, "") === "ELTSHIDIGIT") code = "EL TSHI DIGIT"; $("erreur").textContent = "";
 if (!code) return;
 try { await charger(); memo.set(code); $("porte").hidden = true; $("tableau").hidden = false; $("btnSortir").hidden = false; }
 catch (err) { $("erreur").textContent = /code/i.test(err.message) ? "Code incorrect." : "Connexion impossible, réessaie."; }
