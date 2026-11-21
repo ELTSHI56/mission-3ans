@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mission 3 ans — Invitation</title>
+<meta name="description" content="Invitation : décollage pour mes 3 ans ! — EL TSHI DIGIT">
+<meta property="og:title" content="🚀 Mission 3 ans : tu es invité(e) à bord !">
+<meta property="og:description" content="Lance la fusée pour découvrir l’invitation.">
+<meta name="theme-color" content="#14123A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Righteous&family=Nunito:wght@600;700;800&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{
+--nuit:#14123A; --nuit2:#1F1B57; --nuit3:#2C2775; --etoile:#FFF6D8; --soleil:#FFC93C; --orange:#FF8A3D; --rouge:#FF5A5F;
+--turquoise:#2ED8C3; --bleu:#4DA8FF; --lune:#E9E4FF; --texte:#F4F2FF; --doux:#B9B3E6;
+--violet:#4B2E83; --corail:#FF7A59;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{font-family:"Nunito",system-ui,sans-serif;color:var(--texte);background:var(--nuit);overflow-x:hidden;-webkit-tap-highlight-color:transparent}
+body.ferme{overflow:hidden;height:100svh}
+h1,h2,h3{font-weight:400}
+img{display:block;max-width:100%}
+button{font-family:inherit}
+#ciel{position:fixed;inset:0;z-index:0;pointer-events:none}
+#ouverture{position:fixed;inset:0;z-index:100;overflow:hidden;background:radial-gradient(ellipse at 50% 110%,#3B2F8F 0,var(--nuit2) 45%,var(--nuit) 100%);display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:max(34px,env(safe-area-inset-bottom));transition:opacity .9s ease,visibility .9s}
+#ouverture.fini{opacity:0;visibility:hidden}
+.ouv-titre{position:absolute;top:9%;left:0;right:0;text-align:center;font-family:"Righteous";font-size:clamp(1.3rem,5.5vw,1.8rem);letter-spacing:.04em;padding:0 20px;color:var(--etoile)}
+.ouv-titre small{display:block;font-family:"Nunito";font-weight:700;font-size:.95rem;color:var(--doux);letter-spacing:0;margin-top:6px}
+.decompte{position:absolute;top:26%;left:50%;transform:translateX(-50%);font-family:"Baloo 2";font-weight:800;font-size:9rem;line-height:1;color:var(--soleil);text-shadow:0 0 40px rgba(255,201,60,.6);opacity:0}
+.decompte.tic{animation:tic .9s ease-out}
+@keyframes tic{0%{opacity:0;transform:translateX(-50%) scale(2)}30%{opacity:1;transform:translateX(-50%) scale(1)}100%{opacity:0;transform:translateX(-50%) scale(.7)}}
+.rampe{position:relative;width:170px;height:330px;margin-bottom:8px}
+.fusee{position:absolute;left:50%;bottom:34px;width:120px;transform:translateX(-50%);transition:transform 2.2s cubic-bezier(.6,0,.9,.4)}
+.fusee.vibre{animation:vibre .08s linear infinite}
+@keyframes vibre{0%{margin-left:-1.5px}50%{margin-left:1.5px}100%{margin-left:-1.5px}}
+.fusee.decolle{transform:translateX(-50%) translateY(-130vh)}
+.flamme-f{transform-origin:50% 0;animation:flammeF .12s ease-in-out infinite alternate;opacity:0;transition:opacity .3s}
+.fusee.vibre .flamme-f,.fusee.decolle .flamme-f{opacity:1}
+@keyframes flammeF{from{transform:scaleY(.85)}to{transform:scaleY(1.2)}}
+.socle{position:absolute;bottom:0;left:0;right:0;height:38px;background:linear-gradient(#5B54A8,#3C3786);border-radius:12px 12px 4px 4px}
+.socle::before{content:"";position:absolute;left:18px;right:18px;top:8px;height:4px;border-radius:2px;background:repeating-linear-gradient(90deg,var(--soleil) 0 12px,var(--nuit) 12px 24px)}
+.fumee{position:absolute;bottom:20px;border-radius:50%;background:#fff;opacity:0;filter:blur(2px)}
+.fumee.go{animation:fumee 1.6s ease-out forwards}
+@keyframes fumee{0%{opacity:.9;transform:scale(.3)}100%{opacity:0;transform:scale(2.4) translateX(var(--dx))}}
+.btn-lancer{position:relative;z-index:3;font-family:"Righteous";font-size:1.2rem;letter-spacing:.03em;border:none;cursor:pointer;color:var(--nuit);background:linear-gradient(180deg,#FFD866,var(--soleil));padding:16px 34px;border-radius:999px;box-shadow:0 6px 0 #D89E14,0 0 30px rgba(255,201,60,.45);animation:respire 2s ease-in-out infinite}
+.btn-lancer:active{transform:translateY(3px);box-shadow:0 3px 0 #D89E14}
+@keyframes respire{50%{box-shadow:0 6px 0 #D89E14,0 0 50px rgba(255,201,60,.8)}}
+.ouv-brand{margin-top:16px;font-size:.78rem;color:var(--doux);position:relative;z-index:3}
+#site{position:relative;z-index:1;opacity:0;transition:opacity 1s ease}
+#site.visible{opacity:1}
+section{position:relative;padding:56px 20px}
+.contenu{max-width:760px;margin:0 auto}
+.badge{display:table;margin:0 auto 10px;font-family:"Space Grotesk";font-weight:700;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--turquoise);border:1.5px solid rgba(46,216,195,.5);padding:5px 12px;border-radius:999px}
+.titre-section{text-align:center;font-family:"Righteous";font-size:clamp(1.8rem,7vw,2.5rem);line-height:1.1;margin-bottom:8px;color:var(--etoile)}
+.titre-section .mot{display:inline-block;white-space:nowrap}
+.titre-section .l{display:inline-block;opacity:0;transform:translateY(20px) scale(.5)}
+.titre-section.vu .l{animation:lettre .55s cubic-bezier(.3,1.6,.5,1) forwards}
+@keyframes lettre{to{opacity:1;transform:none}}
+.chapo{text-align:center;color:var(--doux);margin-bottom:28px;font-weight:700}
+.revele{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1)}
+.revele.vu{opacity:1;transform:none}
+.panneau{background:linear-gradient(160deg,rgba(255,255,255,.09),rgba(255,255,255,.03));border:1.5px solid rgba(255,255,255,.12);border-radius:26px;padding:22px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.a-venir{color:var(--doux);font-style:italic;opacity:.85}
+.placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;background:radial-gradient(circle at 35% 30%,#3D3699,#221E5E);color:var(--doux);font-weight:800;font-size:.85rem;text-align:center;padding:10px}
+.placeholder b{font-size:2.4rem}
+#accueil{min-height:100svh;text-align:center;padding-top:40px;overflow:hidden}
+.planete{position:absolute;border-radius:50%;pointer-events:auto;cursor:pointer}
+.p1{width:110px;height:110px;top:70px;right:-30px;background:radial-gradient(circle at 35% 30%,#FFB27A,var(--orange) 50%,#D9572B);box-shadow:inset -14px -10px 0 rgba(0,0,0,.15);animation:flotte 7s ease-in-out infinite}
+.p1::after{content:"";position:absolute;left:-26px;right:-26px;top:46%;height:16px;border:5px solid rgba(255,201,60,.8);border-radius:50%;transform:rotate(-18deg)}
+.p2{width:56px;height:56px;top:300px;left:-12px;background:radial-gradient(circle at 35% 30%,#8FF5E6,var(--turquoise) 55%,#159C8C);box-shadow:inset -8px -6px 0 rgba(0,0,0,.15);animation:flotte 9s ease-in-out infinite reverse}
+.p3{width:34px;height:34px;bottom:120px;right:12%;background:radial-gradient(circle at 35% 30%,#fff,var(--lune) 60%,#B7AEE8);animation:flotte 6s ease-in-out infinite}
+@keyframes flotte{50%{transform:translateY(-14px) rotate(8deg)}}
+.hublot{position:relative;z-index:2;width:min(250px,64vw);aspect-ratio:1;margin:10px auto 0;border-radius:50%;padding:14px;background:linear-gradient(145deg,#D7D3F5,#8C86C9);box-shadow:0 0 0 6px rgba(255,255,255,.08),0 0 60px rgba(77,168,255,.35)}
+.hublot::before{content:"";position:absolute;inset:4px;border-radius:50%;background:repeating-conic-gradient(from 0deg,transparent 0 40deg,#5F59A3 40deg 42deg,transparent 42deg 45deg)}
+.hublot .vis{position:absolute;width:10px;height:10px;border-radius:50%;background:#5F59A3;box-shadow:inset 1px 1px 0 rgba(255,255,255,.5)}
+.hublot .in{position:relative;width:100%;height:100%;border-radius:50%;overflow:hidden;border:4px solid #5F59A3}
+.hublot .in::after{content:"";position:absolute;left:12%;top:8%;width:38%;height:20%;border-radius:50%;background:rgba(255,255,255,.22);transform:rotate(-25deg);pointer-events:none}
+.hublot img{width:100%;height:100%;object-fit:cover}
+.mission{position:relative;z-index:2;margin-top:22px;font-family:"Space Grotesk";font-weight:700;font-size:.82rem;letter-spacing:.22em;color:var(--turquoise)}
+.prenom{position:relative;z-index:2;font-family:"Baloo 2";font-weight:800;font-size:clamp(2.6rem,12vw,4.2rem);line-height:1;margin-top:6px;color:#fff;text-shadow:0 0 24px rgba(255,201,60,.35)}
+.phrase{position:relative;z-index:2;font-family:"Righteous";font-size:clamp(1.15rem,5vw,1.5rem);color:var(--soleil);margin-top:8px}
+.date-accueil{position:relative;z-index:2;margin-top:8px;font-weight:800;color:var(--doux)}
+.ecran{position:relative;z-index:2;display:inline-flex;gap:6px;margin-top:22px;padding:12px;border-radius:20px;background:#0B0A26;border:2px solid #3C3786;box-shadow:inset 0 0 20px rgba(46,216,195,.12)}
+.ecran .c{width:68px;padding:6px 0;text-align:center}
+.ecran b{display:block;font-family:"Space Grotesk";font-weight:700;font-size:1.9rem;color:var(--turquoise);text-shadow:0 0 12px rgba(46,216,195,.6)}
+.ecran small{font-size:.7rem;font-weight:800;letter-spacing:.1em;color:var(--doux);text-transform:uppercase}
+.ecran.attente{padding:14px 20px;font-family:"Space Grotesk";font-weight:700;color:var(--turquoise);font-size:.92rem;max-width:320px}
+.gateau-zone{position:relative;z-index:2;margin-top:26px}
+.gateau{width:150px;margin:0 auto;display:block;cursor:pointer}
+.gateau .fl{transform-origin:50% 100%;animation:vac .8s ease-in-out infinite alternate;transition:opacity .4s}
+.gateau .fl:nth-of-type(2){animation-delay:-.3s}.gateau .fl:nth-of-type(3){animation-delay:-.55s}
+@keyframes vac{from{transform:rotate(-5deg) scaleY(1)}to{transform:rotate(5deg) scaleY(1.15)}}
+.gateau.eteint .fl{opacity:0}
+.aide{font-size:.85rem;font-weight:700;color:var(--doux);margin-top:4px}
+.trajet{position:relative;padding-left:62px}
+.trajet .orbite{position:absolute;left:26px;top:0;bottom:0;width:3px;background:repeating-linear-gradient(var(--doux) 0 6px,transparent 6px 14px);opacity:.35}
+.trajet .orbite i{position:absolute;left:0;top:0;width:100%;background:linear-gradient(var(--turquoise),var(--soleil));opacity:1;height:0;transition:height .2s linear;border-radius:2px}
+.trajet .mini-fusee{position:absolute;left:14px;top:0;font-size:1.6rem;transform:rotate(180deg) translateY(50%);transition:top .2s linear;filter:drop-shadow(0 0 8px rgba(255,201,60,.6))}
+.etape{position:relative;margin-bottom:22px}
+.etape .astre{position:absolute;left:-62px;top:0;width:54px;height:54px;border-radius:50%;display:grid;place-items:center;font-size:1.5rem;background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.5),var(--c) 60%);box-shadow:0 0 18px var(--c),0 0 0 5px var(--nuit)}
+.etape .info{padding:14px 18px}
+.etape .quand{font-family:"Space Grotesk";font-weight:700;font-size:.78rem;letter-spacing:.14em;color:var(--turquoise);text-transform:uppercase}
+.etape h3{font-family:"Righteous";font-size:1.15rem;margin-top:2px;color:#fff}
+.etape p{color:var(--doux);font-weight:700;font-size:.93rem;margin-top:2px}
+.constellation{position:relative;display:grid;grid-template-columns:repeat(2,1fr);gap:22px 26px;max-width:380px;margin:0 auto}
+@media(min-width:620px){.constellation{grid-template-columns:repeat(4,1fr);max-width:760px}}
+.constellation svg.lignes{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.astro{position:relative;text-align:center;animation:flotte2 6s ease-in-out infinite}
+.astro:nth-child(odd){animation-delay:-2.5s;margin-top:22px}
+@keyframes flotte2{50%{transform:translateY(-10px)}}
+.astro .rond{width:100%;aspect-ratio:1;border-radius:50%;overflow:hidden;border:4px solid var(--c);box-shadow:0 0 22px var(--c)}
+.astro img{width:100%;height:100%;object-fit:cover}
+.astro .placeholder b{font-size:1.8rem}
+.astro span{display:inline-block;margin-top:8px;font-family:"Space Grotesk";font-weight:700;font-size:.78rem;letter-spacing:.08em;color:var(--etoile);background:rgba(255,255,255,.08);padding:4px 10px;border-radius:999px}
+.plan{display:grid;gap:12px}
+.vol{display:flex;align-items:center;gap:14px;padding:14px 16px}
+.vol .t{flex:none;font-family:"Space Grotesk";font-weight:700;font-size:1rem;color:var(--nuit);background:var(--c);border-radius:12px;padding:8px 10px;min-width:72px;text-align:center}
+.vol .em{font-size:1.7rem}
+.vol b{font-family:"Righteous";font-weight:400;font-size:1.08rem;display:block;color:#fff}
+.vol span{color:var(--doux);font-weight:700;font-size:.9rem}
+.lieu-nom{font-family:"Righteous";font-size:1.4rem;text-align:center;color:#fff}
+.lieu-adr{text-align:center;color:var(--doux);font-weight:700;margin:4px 0 16px}
+.carte-map{border-radius:20px;overflow:hidden;aspect-ratio:16/11;background:radial-gradient(circle at 50% 50%,#2A2570,#17154A);display:grid;place-items:center;color:var(--doux);font-weight:800;border:1.5px solid rgba(255,255,255,.12)}
+.carte-map iframe{width:100%;height:100%;border:0;filter:saturate(.9)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:none;cursor:pointer;text-decoration:none;font-family:"Righteous";font-size:1.05rem;padding:14px 24px;border-radius:999px;color:var(--nuit);background:var(--b,var(--turquoise));box-shadow:0 5px 0 var(--o,#17A291)}
+.btn:active{transform:translateY(3px);box-shadow:0 2px 0 var(--o,#17A291)}
+.btn[aria-disabled="true"]{opacity:.45;pointer-events:none}
+.centre{text-align:center;margin-top:16px}
+.theme-txt{text-align:center;font-weight:700;color:var(--doux)}
+.theme-txt b{color:#fff}
+.pastilles{display:flex;justify-content:center;gap:18px;margin:18px 0 10px}
+.pastilles div{text-align:center;font-weight:800;font-size:.82rem;color:var(--doux)}
+.pastilles i{display:block;width:62px;height:62px;border-radius:50%;margin:0 auto 6px;background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.55),var(--c) 60%);box-shadow:0 0 20px var(--c)}
+.cadeaux{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
+.cadeau{text-align:center;font-weight:800;padding:18px 12px}
+.cadeau span{display:block;font-size:2rem;margin-bottom:4px}
+.billet{position:relative;max-width:520px;margin:0 auto;border-radius:24px;overflow:hidden;background:#FFF9EC;color:var(--nuit);box-shadow:0 20px 50px rgba(0,0,0,.4)}
+.billet .tete{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;background:linear-gradient(90deg,var(--orange),var(--soleil));color:var(--nuit)}
+.billet .tete b{font-family:"Righteous";font-size:1.15rem;letter-spacing:.04em}
+.billet .tete span{white-space:nowrap;font-family:"Space Grotesk";font-weight:700;font-size:.8rem;letter-spacing:.12em}
+.billet .vol-info{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:16px 20px 6px;text-align:center}
+.billet .vol-info small{display:block;font-family:"Space Grotesk";font-weight:700;font-size:.7rem;letter-spacing:.14em;color:#8A84B8}
+.billet .vol-info strong{font-family:"Righteous";font-size:1.5rem}
+.billet .vol-info .avion{font-size:1.5rem}
+.billet .corps{padding:8px 20px 20px}
+.billet .perfo{height:22px;position:relative;margin:4px 0;background:radial-gradient(circle at 0 50%,var(--nuit) 11px,transparent 12px) left/50% 100% no-repeat,radial-gradient(circle at 100% 50%,var(--nuit) 11px,transparent 12px) right/50% 100% no-repeat}
+.billet .perfo::after{content:"";position:absolute;left:22px;right:22px;top:50%;border-top:2px dashed #D9D3EE}
+.limite{text-align:center;font-weight:800;color:var(--orange);font-size:.92rem;margin-bottom:12px}
+.champ{margin-bottom:12px}
+.champ label{display:block;font-family:"Space Grotesk";font-weight:700;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:#8A84B8;margin-bottom:6px}
+.champ input{width:100%;padding:12px 14px;border-radius:14px;border:2px solid #E6E0F5;font:700 1rem "Nunito";color:var(--nuit);background:#fff;outline:none}
+.champ input:focus{border-color:var(--orange)}
+.compteurs{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.stepper{display:flex;align-items:center;justify-content:space-between;border:2px solid #E6E0F5;border-radius:14px;padding:5px;background:#fff}
+.stepper button{width:38px;height:38px;border-radius:10px;border:none;background:var(--nuit3);color:#fff;font-size:1.3rem;font-weight:800;cursor:pointer}
+.stepper output{font-family:"Space Grotesk";font-weight:700;font-size:1.3rem}
+.wa{--b:#25D366;--o:#1DA851;width:100%;color:#fff}
+.choix{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+.opt{border:2px solid #E6E0F5;background:#fff;color:var(--nuit);border-radius:14px;padding:11px 6px;font:800 .92rem "Nunito";cursor:pointer}
+.opt.actif{border-color:var(--orange);background:#FFF1E6}
+.succes{text-align:center;padding:8px 4px 4px}
+.succes .ok{font-size:2.6rem}
+.ok-titre{font-family:"Righteous";font-size:1.3rem;margin-top:4px}
+.ok-txt{color:#6E6886;font-weight:700;margin:6px 0 14px}
+.regle{text-align:center;font-weight:700;font-size:.82rem;color:#8A84B8;margin:-6px 0 12px}
+.lien{background:none;border:none;color:#6E6886;font:800 .9rem "Nunito";text-decoration:underline;cursor:pointer;margin-top:12px}
+.btn.envoi{opacity:.6;pointer-events:none}
+.billet .code{display:flex;gap:2px;justify-content:center;margin-top:14px;height:34px}
+.billet .code i{display:block;background:var(--nuit);width:var(--w)}
+.info-rsvp{text-align:center;font-weight:700;font-size:.85rem;color:#8A84B8;margin-top:10px}
+footer{position:relative;z-index:1;text-align:center;padding:30px 20px 34px}
+.lune{width:120px;height:120px;margin:0 auto;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,var(--lune) 55%,#B7AEE8);box-shadow:0 0 50px rgba(233,228,255,.45);position:relative;cursor:pointer}
+.lune i{position:absolute;border-radius:50%;background:rgba(140,130,200,.35)}
+.merci{font-family:"Righteous";font-size:clamp(1.25rem,5vw,1.55rem);margin-top:18px;color:#fff}
+.hashtag{font-family:"Baloo 2";font-weight:800;color:var(--soleil);font-size:1.2rem;margin-top:4px}
+.signature{margin:34px auto 0;padding:18px 26px;border-radius:22px;background:#fff;display:inline-flex;flex-direction:column;align-items:center;gap:6px;color:#6E6886;font-size:.82rem;text-decoration:none}
+.signature .tel{font-family:"Space Grotesk";font-weight:700;color:var(--violet);font-size:1rem}
+#musique{position:fixed;right:14px;bottom:14px;z-index:40;width:48px;height:48px;border-radius:50%;border:1.5px solid rgba(255,255,255,.25);background:rgba(20,18,58,.8);color:#fff;font-size:1.25rem;cursor:pointer;display:none;backdrop-filter:blur(6px)}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:120}
+.eclat{position:fixed;pointer-events:none;font-size:18px;z-index:60;animation:eclat .75s ease-out forwards}
+@keyframes eclat{to{transform:translate(var(--dx),var(--dy)) scale(.3) rotate(180deg);opacity:0}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition-duration:.01ms!important}.titre-section .l{opacity:1;transform:none}}
+</style>
+</head>
+<body class="ferme">
+<canvas id="ciel"></canvas>
+<canvas id="confetti"></canvas>
+<div id="ouverture" role="dialog" aria-label="Lancer l’invitation">
+<p class="ouv-titre" id="ouvTitre">Mission 3 ans<small id="ouvSous">Une invitation t’attend à bord…</small></p>
+<div class="decompte" id="decompte">3</div>
+<div class="rampe" aria-hidden="true">
+<svg class="fusee" id="fusee" viewBox="0 0 120 260">
+<g class="flamme-f"><path d="M44 205 Q60 268 76 205 Z" fill="#FF8A3D"/><path d="M50 205 Q60 245 70 205 Z" fill="#FFC93C"/></g>
+<path d="M30 150 L8 200 L30 190 Z" fill="#FF5A5F"/><path d="M90 150 L112 200 L90 190 Z" fill="#FF5A5F"/>
+<path d="M60 6 C92 40 94 110 90 200 L30 200 C26 110 28 40 60 6 Z" fill="#F4F2FF"/>
+<path d="M60 6 C74 20 82 36 86 52 L34 52 C38 36 46 20 60 6 Z" fill="#FF5A5F"/>
+<circle cx="60" cy="96" r="22" fill="#4DA8FF" stroke="#8C86C9" stroke-width="6"/>
+<path d="M50 88 a10 10 0 0 1 12-6" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" opacity=".7"/>
+<text x="60" y="168" text-anchor="middle" font-family="Baloo 2, sans-serif" font-weight="800" font-size="44" fill="#FFC93C" stroke="#14123A" stroke-width="2">3</text>
+<rect x="40" y="196" width="40" height="10" rx="3" fill="#8C86C9"/>
+</svg>
+<div class="socle"></div>
+<div id="fumees"></div>
+</div>
+<button class="btn-lancer" id="btnLancer">🚀 Lancer la fusée</button>
+<div class="ouv-brand">Invitation digitale EL TSHI DIGIT · +243 844 195 449</div>
+</div>
+<main id="site">
+<section id="accueil">
+<div class="planete p1" data-eclat></div><div class="planete p2" data-eclat></div><div class="planete p3" data-eclat></div>
+<div class="hublot revele" id="hublot"><div class="in" id="photoPrincipale"></div></div>
+<p class="mission">★ MISSION ANNIVERSAIRE ★</p>
+<h1 class="prenom" id="prenom"></h1>
+<p class="phrase" id="phrase"></p>
+<p class="date-accueil" id="dateAccueil"></p>
+<div id="compteZone"></div>
+<div class="gateau-zone">
+<svg class="gateau" id="gateau" viewBox="0 0 160 130" role="button" tabindex="0" aria-label="Souffler les 3 bougies">
+<ellipse cx="80" cy="118" rx="72" ry="9" fill="#2C2775"/>
+<rect x="18" y="70" width="124" height="46" rx="12" fill="#FF8A3D"/>
+<path d="M18 84 q10 12 20 0 q10 12 20 0 q10 12 21 0 q10 12 21 0 q10 12 21 0 q10 12 21 0 v-6 h-124z" fill="#FFF6D8"/>
+<circle cx="40" cy="100" r="4" fill="#2ED8C3"/><circle cx="80" cy="104" r="4" fill="#FFC93C"/><circle cx="120" cy="100" r="4" fill="#4DA8FF"/>
+<rect x="52" y="40" width="8" height="32" rx="3" fill="#2ED8C3"/><rect x="76" y="34" width="8" height="38" rx="3" fill="#FFC93C"/><rect x="100" y="40" width="8" height="32" rx="3" fill="#4DA8FF"/>
+<ellipse class="fl" cx="56" cy="30" rx="5" ry="9" fill="#FFB547"/><ellipse class="fl" cx="80" cy="24" rx="5" ry="9" fill="#FFB547"/><ellipse class="fl" cx="104" cy="30" rx="5" ry="9" fill="#FFB547"/>
+</svg>
+<p class="aide" id="aide">Touche le gâteau pour souffler les 3 bougies 🌬️</p>
+</div>
+</section>
+<section id="annees">
+<div class="contenu">
+<span class="badge revele">Journal de bord</span>
+<h2 class="titre-section" data-titre>Trois ans de voyage</h2>
+<p class="chapo revele">Les grandes étapes depuis le décollage</p>
+<div class="trajet" id="trajet"><div class="orbite"><i id="orbiteProg"></i></div><div class="mini-fusee" id="miniFusee">🚀</div></div>
+</div>
+</section>
+<section id="galerie">
+<div class="contenu">
+<span class="badge revele">Album spatial</span>
+<h2 class="titre-section" data-titre>Ma constellation de souvenirs</h2>
+<p class="chapo revele">Chaque photo est une étoile de notre ciel</p>
+<div class="constellation" id="constellation"></div>
+</div>
+</section>
+<section id="programme">
+<div class="contenu">
+<span class="badge revele">Programme</span>
+<h2 class="titre-section" data-titre>Le plan de vol</h2>
+<p class="chapo revele">Attache ta ceinture, la fête commence !</p>
+<div class="plan" id="plan"></div>
+</div>
+</section>
+<section id="lieu">
+<div class="contenu">
+<span class="badge revele">Coordonnées</span>
+<h2 class="titre-section" data-titre>Point d’atterrissage</h2>
+<div class="panneau revele">
+<p class="lieu-nom" id="lieuNom"></p>
+<p class="lieu-adr" id="lieuAdr"></p>
+<div class="carte-map" id="carteMap"></div>
+<div class="centre"><a class="btn" id="btnItin" target="_blank" rel="noopener">📍 Ouvrir l’itinéraire</a></div>
+</div>
+</div>
+</section>
+<section id="theme">
+<div class="contenu">
+<span class="badge revele">Équipement</span>
+<h2 class="titre-section" data-titre>Thème et tenue</h2>
+<div class="panneau revele">
+<p class="theme-txt" id="themeTxt"></p>
+<div class="pastilles" id="pastilles"></div>
+<p class="theme-txt" id="tenueTxt"></p>
+</div>
+</div>
+</section>
+<section id="cadeauxSec">
+<div class="contenu">
+<span class="badge revele">Cargaison</span>
+<h2 class="titre-section" data-titre>Idées cadeaux</h2>
+<p class="chapo revele">Ta présence est le plus beau des cadeaux ! Si tu veux faire plaisir :</p>
+<div class="cadeaux revele" id="cadeaux"></div>
+</div>
+</section>
+<section id="rsvp">
+<div class="contenu">
+<span class="badge revele">Embarquement</span>
+<h2 class="titre-section" data-titre>Confirmer ma présence</h2>
+<p class="chapo revele">Remplis ta carte d’embarquement</p>
+<form class="billet revele" id="formRsvp" novalidate>
+<div class="tete"><b>CARTE D’EMBARQUEMENT</b><span id="numVol">VOL 3-ANS</span></div>
+<div class="vol-info">
+<div><small>DÉPART</small><strong>Maison</strong></div>
+<div class="avion">🚀</div>
+<div><small>ARRIVÉE</small><strong>La fête</strong></div>
+</div>
+<div class="perfo"></div>
+<div class="corps">
+<p class="limite" id="limite"></p>
+<p class="regle">Une seule réponse par famille : réponds pour tout ton foyer.</p>
+<div class="choix" role="radiogroup" aria-label="Présence">
+<button type="button" class="opt actif" data-presence="1" role="radio" aria-checked="true">🚀 Je viens</button>
+<button type="button" class="opt" data-presence="0" role="radio" aria-checked="false">😢 Je ne pourrai pas venir</button>
+</div>
+<div class="champ"><label for="nom">Passager (nom ou famille)</label><input id="nom" required maxlength="80" placeholder="Ex. Famille Mukendi" autocomplete="name"></div>
+<div class="compteurs" id="blocEffectif">
+<div class="champ"><label>Adultes</label><div class="stepper" data-stepper="adultes"><button type="button" data-d="-1" aria-label="Moins d’adultes">−</button><output id="adultes">1</output><button type="button" data-d="1" aria-label="Plus d’adultes">+</button></div></div>
+<div class="champ"><label>Enfants</label><div class="stepper" data-stepper="enfants"><button type="button" data-d="-1" aria-label="Moins d’enfants">−</button><output id="enfants">0</output><button type="button" data-d="1" aria-label="Plus d’enfants">+</button></div></div>
+</div>
+<div class="champ"><label for="tel">Téléphone (WhatsApp)</label><input id="tel" type="tel" required maxlength="30" inputmode="tel" placeholder="Ex. 0812 345 678" autocomplete="tel"></div>
+<div class="champ"><label for="mot">Un petit mot (facultatif)</label><input id="mot" maxlength="300" placeholder="Ex. Joyeux anniversaire !"></div>
+<button class="btn wa" id="btnEnvoyer" type="submit">✅ Valider mon embarquement</button>
+<p class="info-rsvp" id="rsvpInfo"></p>
+<div class="succes" id="succes" hidden>
+<div class="ok">✅</div>
+<p class="ok-titre" id="okTitre"></p>
+<p class="ok-txt" id="okTxt"></p>
+<a class="btn wa" id="btnWaParents" target="_blank" rel="noopener" hidden>💬 Prévenir aussi les parents sur WhatsApp</a>
+</div>
+<div class="code" id="codeBarre" aria-hidden="true"></div>
+</div>
+</form>
+</div>
+</section>
+<footer>
+<div class="lune" id="lune" role="button" aria-label="Lune surprise"><i style="width:22px;height:22px;left:24px;top:30px"></i><i style="width:14px;height:14px;left:70px;top:60px"></i><i style="width:10px;height:10px;left:46px;top:82px"></i></div>
+<p class="merci" id="merci"></p>
+<p class="hashtag" id="hashtag"></p>
+<a class="signature" href="https://wa.me/243844195449" target="_blank" rel="noopener" aria-label="EL TSHI DIGIT, +243 844 195 449">
+<span>Invitation digitale réalisée par</span>
+<svg width="74" height="86" viewBox="0 0 96 110" aria-hidden="true">
+<rect x="30" y="4" width="10" height="46" fill="#4B2E83"/><rect x="30" y="4" width="36" height="10" fill="#4B2E83"/>
+<rect x="30" y="22" width="29" height="10" fill="#4B2E83"/><rect x="30" y="40" width="36" height="10" fill="#4B2E83"/>
+<rect x="45" y="22" width="16" height="10" fill="#FF7A59"/><circle cx="74" cy="45" r="5" fill="#FF7A59"/>
+<text x="48" y="76" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="20" fill="#4B2E83">EL TSHI</text>
+<rect x="20" y="85" width="56" height="20" rx="10" fill="#4B2E83"/>
+<text x="48" y="99.5" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="12" fill="#fff" letter-spacing="1.5">DIGIT</text>
+</svg>
+<span class="tel">+243 844 195 449</span>
+</a>
+</footer>
+</main>
+<button id="musique" aria-label="Activer la musique">🔇</button>
+<script>
+const INFOS = {
+prenom: "",
+prenomCourt: "",
+date: "",
+heure: "",
+lieuNom: "",
+adresse: "",
+parents: "",
+whatsapp: "",
+dateLimite: "",
+hashtag: "#Mission3Ans",
+theme: "Voyage dans l’espace",
+couleurs: [["Bleu nuit", "#3C3786"], ["Jaune étoile", "#FFC93C"], ["Turquoise", "#2ED8C3"]],
+tenue: "Tenue colorée — les petits astronautes sont les bienvenus 🧑‍🚀",
+cadeaux: [["🧸", "Peluches"], ["📚", "Livres d’images"], ["🧩", "Jeux d’éveil"], ["👕", "Vêtements 3-4 ans"]],
+programme: [
+["15:00", "🧑‍🚀", "Embarquement des invités", "Accueil en musique"],
+["15:45", "🪐", "Jeux et animations", "Danse, chasse aux étoiles, coloriage"],
+["17:00", "🎂", "Le gâteau et les 3 bougies", "Le moment le plus attendu !"],
+["17:30", "📸", "Photos de l’équipage", "Un sourire pour l’album souvenir"],
+["18:00", "🍰", "Goûter et retour sur Terre", "On se régale avant de se dire au revoir"]
+],
+annees: [
+["Jour J", "👶", "#FF8A3D", "Décollage !", "L’arrivée la plus attendue de l’univers."],
+["3 mois", "😊", "#FFC93C", "Premier sourire", "Et toute la station a fondu."],
+["9 mois", "🍼", "#4DA8FF", "Premières dents", "Quelques nuits agitées, beaucoup de câlins."],
+["1 an", "👣", "#2ED8C3", "Premiers pas", "Premiers pas sur une nouvelle planète."],
+["2 ans", "🗣️", "#B98CFF", "Premières phrases", "Et des « pourquoi ? » à n’en plus finir."],
+["3 ans", "⭐", "#FFC93C", "Mission 3 ans", "Un(e) grand(e) astronaute plein(e) de vie !"]
+],
+photoPrincipale: "photos/enfant",
+galerie: ["photos/photo1", "photos/photo2", "photos/photo3", "photos/photo4", "photos/photo5", "photos/photo6", "photos/photo7", "photos/photo8"],
+legendes: ["Naissance", "3 mois", "6 mois", "1 an", "18 mois", "2 ans", "2 ans ½", "3 ans"]
+};
+const $ = id => document.getElementById(id);
+const calme = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const court = INFOS.prenomCourt || (INFOS.prenom ? INFOS.prenom.split(" ")[0] : "");
+const avenir = t => `<span class="a-venir">${t}</span>`;
+const hasDate = /^\d{4}-\d{2}-\d{2}$/.test(INFOS.date);
+const debut = hasDate ? new Date(`${INFOS.date}T${INFOS.heure || "12:00"}:00`) : null;
+const majus = s => s.charAt(0).toUpperCase() + s.slice(1);
+const couleurs = ["#FF8A3D", "#FFC93C", "#2ED8C3", "#4DA8FF", "#B98CFF", "#FF5A5F"];
+function chargerPhoto(conteneur, base, alt, petit) {
+const exts = [".jpg", ".jpeg", "..jpeg", ".png", ".JPG", ".JPEG", ".PNG", ".webp"];
+let i = 0; const img = new Image(); img.alt = alt; img.decoding = "async";
+const vide = () => { conteneur.innerHTML = `<div class="placeholder"><b>${petit ? "⭐" : "🧑‍🚀"}</b>${petit ? "" : "La photo arrive bientôt"}</div>`; };
+img.onerror = () => { i++; if (i < exts.length) img.src = base + exts[i]; else vide(); };
+img.onload = () => { conteneur.innerHTML = ""; conteneur.appendChild(img); };
+vide(); img.src = base + exts[0];
+}
+(function () {
+const c = $("ciel"), x = c.getContext("2d"); let W, H, etoiles = [], filantes = [];
+const init = () => { W = c.width = innerWidth; H = c.height = innerHeight; etoiles = Array.from({ length: Math.round(W * H / 5500) }, () => ({ x: Math.random() * W, y: Math.random() * H, r: Math.random() * 1.4 + .3, p: Math.random() * 6 })); };
+init(); addEventListener("resize", init);
+let t = 0;
+(function loop() {
+t += .02; x.clearRect(0, 0, W, H);
+etoiles.forEach(s => { x.globalAlpha = calme ? .8 : .45 + .45 * Math.sin(t * 2 + s.p); x.fillStyle = "#FFF6D8"; x.beginPath(); x.arc(s.x, s.y, s.r, 0, 7); x.fill(); });
+if (!calme && Math.random() < .006) filantes.push({ x: Math.random() * W * .8 + W * .2, y: Math.random() * H * .4, v: 9 + Math.random() * 5, l: 1 });
+filantes.forEach(f => { x.globalAlpha = f.l; const g = x.createLinearGradient(f.x, f.y, f.x + 80, f.y - 40); g.addColorStop(0, "#fff"); g.addColorStop(1, "rgba(255,255,255,0)"); x.strokeStyle = g; x.lineWidth = 2; x.beginPath(); x.moveTo(f.x, f.y); x.lineTo(f.x + 80, f.y - 40); x.stroke(); f.x -= f.v; f.y += f.v / 2; f.l -= .015; });
+filantes = filantes.filter(f => f.l > 0); x.globalAlpha = 1;
+if (!calme) requestAnimationFrame(loop);
+})();
+})();
+document.title = court ? `Mission 3 ans — ${court}` : "Mission 3 ans — Invitation";
+$("ouvTitre").firstChild.textContent = court ? `Mission ${court} : 3 ans` : "Mission 3 ans";
+$("ouvSous").textContent = court ? `${court} t’invite à bord de sa fusée…` : "Une invitation t’attend à bord…";
+$("prenom").innerHTML = INFOS.prenom || avenir("Prénom à venir");
+$("phrase").textContent = `${court || "Notre petit astronaute"} décolle pour ses 3 ans !`;
+$("dateAccueil").innerHTML = hasDate ? `${majus(debut.toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long", year: "numeric" }))}${INFOS.heure ? " · à partir de " + INFOS.heure.replace(":", "h") : ""}` : avenir("Date et heure bientôt annoncées");
+chargerPhoto($("photoPrincipale"), INFOS.photoPrincipale, "Photo de " + (court || "l’enfant"));
+[[50, 2], [98, 50], [50, 98], [2, 50], [16, 16], [84, 16], [16, 84], [84, 84]].forEach(([l, t]) => { const v = document.createElement("span"); v.className = "vis"; v.style.cssText = `left:calc(${l}% - 5px);top:calc(${t}% - 5px)`; $("hublot").appendChild(v); });
+function compte() {
+const z = $("compteZone");
+if (!hasDate) { z.innerHTML = `<div class="ecran attente">⏳ COMPTE À REBOURS : EN ATTENTE DE LA DATE DE DÉCOLLAGE</div>`; return; }
+let d = debut - new Date();
+if (d <= 0) { z.innerHTML = `<div class="ecran attente">🎉 DÉCOLLAGE AUJOURD’HUI ! JOYEUX ANNIVERSAIRE ${court.toUpperCase()} !</div>`; return; }
+const u = [["jours", 864e5], ["heures", 36e5], ["min", 6e4], ["sec", 1e3]].map(([l, ms]) => { const v = Math.floor(d / ms); d -= v * ms; return `<div class="c"><b>${String(v).padStart(2, "0")}</b><small>${l}</small></div>`; });
+z.innerHTML = `<div class="ecran">${u.join("")}</div>`;
+}
+compte(); setInterval(compte, 1000);
+$("trajet").insertAdjacentHTML("beforeend", INFOS.annees.map(a => `<div class="etape revele"><div class="astre" style="--c:${a[2]}">${a[1]}</div><div class="info panneau"><div class="quand">${a[0]}</div><h3>${a[3]}</h3><p>${a[4]}</p></div></div>`).join(""));
+addEventListener("scroll", () => { const f = $("trajet").getBoundingClientRect(); const p = Math.min(1, Math.max(0, (innerHeight * .7 - f.top) / f.height)); $("orbiteProg").style.height = (p * 100) + "%"; $("miniFusee").style.top = (p * 100) + "%"; }, { passive: true });
+$("constellation").innerHTML = `<svg class="lignes" id="lignes"></svg>` + INFOS.galerie.map((p, i) => `<figure class="astro revele" style="--c:${couleurs[i % couleurs.length]}"><div class="rond" data-photo="${p}"></div><span>${INFOS.legendes[i] || ""}</span></figure>`).join("");
+document.querySelectorAll("[data-photo]").forEach(el => chargerPhoto(el, el.dataset.photo, "Souvenir de " + (court || "l’enfant"), true));
+function tracerLignes() {
+const box = $("constellation").getBoundingClientRect(); const pts = [...document.querySelectorAll(".astro .rond")].map(r => { const b = r.getBoundingClientRect(); return [b.left - box.left + b.width / 2, b.top - box.top + b.height / 2]; });
+$("lignes").innerHTML = pts.slice(1).map((p, i) => `<line x1="${pts[i][0]}" y1="${pts[i][1]}" x2="${p[0]}" y2="${p[1]}" stroke="rgba(255,246,216,.25)" stroke-width="1.5" stroke-dasharray="4 6"/>`).join("");
+}
+addEventListener("resize", tracerLignes);
+$("plan").innerHTML = INFOS.programme.map((m, i) => `<div class="vol panneau revele"><div class="t" style="--c:${couleurs[i % couleurs.length]}">${m[0].replace(":", "h")}</div><div class="em">${m[1]}</div><div><b>${m[2]}</b><span>${m[3]}</span></div></div>`).join("")
++ (INFOS.heure ? "" : `<p class="chapo" style="margin:4px 0 0;font-size:.85rem">Horaires indicatifs, confirmés avec la date.</p>`);
+const qLieu = [INFOS.lieuNom, INFOS.adresse].filter(Boolean).join(", ");
+$("lieuNom").innerHTML = INFOS.lieuNom || avenir("Lieu bientôt annoncé");
+$("lieuAdr").textContent = INFOS.adresse;
+if (qLieu) {
+$("carteMap").innerHTML = `<iframe loading="lazy" title="Carte du lieu" src="https://www.google.com/maps?q=${encodeURIComponent(qLieu)}&output=embed"></iframe>`;
+$("btnItin").href = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(qLieu)}`;
+} else { $("carteMap").textContent = "🛰️ La carte s’affichera ici"; $("btnItin").setAttribute("aria-disabled", "true"); }
+$("themeTxt").innerHTML = `Thème : <b>${INFOS.theme}</b>`;
+$("pastilles").innerHTML = INFOS.couleurs.map(c => `<div><i style="--c:${c[1]}"></i>${c[0]}</div>`).join("");
+$("tenueTxt").textContent = INFOS.tenue;
+if (INFOS.cadeaux.length) $("cadeaux").innerHTML = INFOS.cadeaux.map(c => `<div class="cadeau panneau"><span>${c[0]}</span>${c[1]}</div>`).join("");
+else $("cadeauxSec").remove();
+const hasLim = /^\d{4}-\d{2}-\d{2}$/.test(INFOS.dateLimite);
+$("limite").innerHTML = hasLim ? `Fin de l’embarquement : ${new Date(INFOS.dateLimite + "T12:00:00").toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" })}` : `<span style="color:#8A84B8;font-style:italic">Date limite de réponse bientôt annoncée</span>`;
+if (court) $("numVol").textContent = "VOL " + court.toUpperCase().slice(0, 6) + "-3";
+$("codeBarre").innerHTML = Array.from({ length: 46 }, () => `<i style="--w:${[1, 2, 3, 1, 2][Math.floor(Math.random() * 5)]}px"></i>`).join("");
+document.querySelectorAll("[data-stepper]").forEach(s => s.addEventListener("click", e => { const d = +e.target.dataset.d; if (!d) return; const o = s.querySelector("output"); o.textContent = Math.max(s.dataset.stepper === "adultes" ? 1 : 0, Math.min(20, +o.textContent + d)); }));
+const BASE = { url: "https://iwyvjhumcmuweutlkzax.supabase.co", cle: "sb_publishable_8czJKygsq_BLi43RkrAYoA_fAZ25tkr", evenement: "mission-3ans" };
+let presence = true;
+document.querySelectorAll(".opt").forEach(o => o.addEventListener("click", () => {
+presence = o.dataset.presence === "1";
+document.querySelectorAll(".opt").forEach(x => { x.classList.toggle("actif", x === o); x.setAttribute("aria-checked", x === o); });
+$("blocEffectif").style.display = presence ? "" : "none";
+}));
+function messageWa(nom) {
+return presence
+? `Bonjour ${INFOS.parents || ""} ! 🚀\nJe confirme ma présence à l’anniversaire des 3 ans${court ? " de " + court : ""}.\n\nNom : ${nom}\nAdultes : ${$("adultes").textContent}\nEnfants : ${$("enfants").textContent}`
+: `Bonjour ${INFOS.parents || ""} !\nMerci pour l’invitation aux 3 ans${court ? " de " + court : ""}. Malheureusement je ne pourrai pas venir.\n\nNom : ${nom}`;
+}
+const CLE_LOCALE = "reponse-" + BASE.evenement;
+const lireLocal = () => { try { return JSON.parse(localStorage.getItem(CLE_LOCALE) || "null"); } catch (e) { return null; } };
+function afficherSucces(rep, dejaFait) {
+$("okTitre").textContent = dejaFait ? "Tu as déjà répondu" : (rep.presence ? "Embarquement confirmé !" : "Réponse bien reçue");
+$("okTxt").textContent = rep.presence
+? `${rep.nom} : ${rep.a} adulte${rep.a > 1 ? "s" : ""} et ${rep.e} enfant${rep.e > 1 ? "s" : ""}. On a hâte de vous voir !${dejaFait ? " Pour modifier ta réponse, contacte les parents." : ""}`
+: `${rep.nom} : absent(e). ${dejaFait ? "Pour modifier ta réponse, contacte les parents." : "Merci, les parents sont prévenus. Tu nous manqueras !"}`;
+if (INFOS.whatsapp) { presence = rep.presence; const w = $("btnWaParents"); w.href = `https://wa.me/${INFOS.whatsapp}?text=${encodeURIComponent(messageWa(rep.nom))}`; w.hidden = false; }
+[...$("formRsvp").querySelectorAll(".choix,.champ,.compteurs,#btnEnvoyer,.limite,.regle,#rsvpInfo")].forEach(el => el.style.display = "none");
+$("succes").hidden = false;
+}
+const dejaLocal = lireLocal(); if (dejaLocal) afficherSucces(dejaLocal, true);
+const MESSAGES = {
+DEJA_REPONDU: "Cette famille (ou ce numéro de téléphone) a déjà répondu. Pour modifier la réponse, contacte les parents.",
+TELEPHONE_INVALIDE: "Indique un numéro de téléphone valide (au moins 9 chiffres).",
+NOM_MANQUANT: "Indique le nom de la famille.",
+EVENEMENT_FERME: "Les réponses sont closes pour cette fête."
+};
+$("formRsvp").addEventListener("submit", async e => {
+e.preventDefault(); const nom = $("nom").value.trim(), tel = $("tel").value.trim();
+$("rsvpInfo").style.color = "";
+if (!nom) { $("nom").focus(); $("nom").style.borderColor = "#FF8A3D"; return; }
+if (tel.replace(/\D/g, "").length < 9) { $("tel").focus(); $("tel").style.borderColor = "#FF8A3D"; $("rsvpInfo").textContent = MESSAGES.TELEPHONE_INVALIDE; $("rsvpInfo").style.color = "#E5484D"; return; }
+const btn = $("btnEnvoyer"); btn.classList.add("envoi"); btn.textContent = "⏳ Envoi en cours…"; $("rsvpInfo").textContent = "";
+try {
+const r = await fetch(`${BASE.url}/rest/v1/rpc/repondre`, { method: "POST", headers: { "Content-Type": "application/json", apikey: BASE.cle, Authorization: `Bearer ${BASE.cle}` },
+body: JSON.stringify({ p_evenement: BASE.evenement, p_nom: nom, p_presence: presence, p_adultes: +$("adultes").textContent, p_enfants: +$("enfants").textContent, p_telephone: tel, p_message: $("mot").value }) });
+if (!r.ok) { const j = await r.json().catch(() => ({})); const code = Object.keys(MESSAGES).find(k => (j.message || "").includes(k)); $("rsvpInfo").textContent = MESSAGES[code] || "Oups, la réponse n’est pas partie. Réessaie dans un instant."; $("rsvpInfo").style.color = "#E5484D"; return; }
+const rep = { nom, presence, a: presence ? +$("adultes").textContent : 0, e: presence ? +$("enfants").textContent : 0 };
+try { localStorage.setItem(CLE_LOCALE, JSON.stringify(rep)); } catch (err) {}
+afficherSucces(rep, false);
+if (presence) { const rc = $("succes").getBoundingClientRect(); confettis(100, rc.left + rc.width / 2, rc.top); }
+} catch (err) {
+$("rsvpInfo").textContent = "Oups, la réponse n’est pas partie (connexion ?). Réessaie dans un instant."; $("rsvpInfo").style.color = "#E5484D";
+} finally { btn.classList.remove("envoi"); btn.textContent = "✅ Valider mon embarquement"; }
+});
+$("merci").textContent = `Merci de fêter les 3 ans de ${court || "notre petit astronaute"} avec nous !`;
+$("hashtag").textContent = INFOS.hashtag;
+document.querySelectorAll("[data-titre]").forEach(t => { let i = 0; t.innerHTML = t.textContent.split(" ").map(m => `<span class="mot">` + [...m].map(c => `<span class="l" style="animation-delay:${(i++) * 35}ms">${c}</span>`).join("") + `</span>`).join(" "); });
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("vu"); io.unobserve(e.target); if (e.target.classList.contains("astro")) tracerLignes(); } }), { threshold: .2 });
+document.querySelectorAll(".revele,.titre-section").forEach(el => io.observe(el));
+const cv = $("confetti"), ctx = cv.getContext("2d"); let parts = [], anim = null;
+const taille = () => { cv.width = innerWidth; cv.height = innerHeight; }; taille(); addEventListener("resize", taille);
+function confettis(n = 120, x0 = null, y0 = null) {
+if (calme) return;
+for (let i = 0; i < n; i++) parts.push({ x: x0 ?? Math.random() * innerWidth, y: y0 ?? -10 - Math.random() * 200, vx: (Math.random() - .5) * (x0 !== null ? 9 : 2), vy: x0 !== null ? -4 - Math.random() * 6 : 2 + Math.random() * 3, r: 4 + Math.random() * 5, c: couleurs[i % couleurs.length], a: Math.random() * 6, t: 0, e: Math.random() < .3 });
+if (!anim) boucle();
+}
+function boucle() {
+ctx.clearRect(0, 0, cv.width, cv.height);
+parts.forEach(p => { p.t++; p.vy += .12; p.x += p.vx + Math.sin(p.t / 15); p.y += p.vy * .6; p.a += .1; ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.a); ctx.fillStyle = p.c;
+if (p.e) { ctx.beginPath(); for (let k = 0; k < 5; k++) { ctx.lineTo(Math.cos(k * 1.2566) * p.r, Math.sin(k * 1.2566) * p.r); ctx.lineTo(Math.cos(k * 1.2566 + .628) * p.r * .45, Math.sin(k * 1.2566 + .628) * p.r * .45); } ctx.fill(); } else ctx.fillRect(-p.r / 2, -p.r / 4, p.r, p.r / 2); ctx.restore(); });
+parts = parts.filter(p => p.y < innerHeight + 20);
+anim = parts.length ? requestAnimationFrame(boucle) : (ctx.clearRect(0, 0, cv.width, cv.height), null);
+}
+function eclat(x, y) {
+if (calme) return;
+for (let k = 0; k < 8; k++) { const s = document.createElement("span"); s.className = "eclat"; s.textContent = ["⭐", "✨", "💫"][k % 3]; const a = k / 8 * Math.PI * 2; s.style.cssText = `left:${x - 9}px;top:${y - 9}px;--dx:${Math.cos(a) * 60}px;--dy:${Math.sin(a) * 60}px`; document.body.appendChild(s); setTimeout(() => s.remove(), 800); }
+}
+document.querySelectorAll("[data-eclat]").forEach(p => p.addEventListener("pointerdown", e => eclat(e.clientX, e.clientY)));
+$("lune").addEventListener("click", e => { eclat(e.clientX, e.clientY); confettis(60, e.clientX, e.clientY); });
+const souffler = () => { const g = $("gateau"), r = g.getBoundingClientRect();
+if (g.classList.toggle("eteint")) { confettis(100, r.left + r.width / 2, r.top + 20); $("aide").textContent = "Bravo ! 🎉 Touche encore pour les rallumer"; }
+else $("aide").textContent = "Touche le gâteau pour souffler les 3 bougies 🌬️"; };
+$("gateau").addEventListener("click", souffler);
+$("gateau").addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); souffler(); } });
+let actx = null, jouer = false, minut = null;
+const notes = [[392, 1], [392, 1], [440, 2], [392, 2], [523, 2], [494, 4], [392, 1], [392, 1], [440, 2], [392, 2], [587, 2], [523, 4], [392, 1], [392, 1], [784, 2], [659, 2], [523, 2], [494, 2], [440, 4], [698, 1], [698, 1], [659, 2], [523, 2], [587, 2], [523, 4]];
+function melodie() {
+if (!jouer) return; let t = actx.currentTime + .05; const u = .28;
+notes.forEach(([f, d]) => { const o = actx.createOscillator(), g = actx.createGain(); o.type = "sine"; o.frequency.value = f; g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(.08, t + .03); g.gain.exponentialRampToValueAtTime(.001, t + d * u * .95); o.connect(g).connect(actx.destination); o.start(t); o.stop(t + d * u); t += d * u; });
+minut = setTimeout(melodie, (t - actx.currentTime + 2) * 1000);
+}
+$("musique").addEventListener("click", () => {
+actx = actx || new (window.AudioContext || window.webkitAudioContext)(); jouer = !jouer;
+$("musique").textContent = jouer ? "🎵" : "🔇"; $("musique").setAttribute("aria-label", jouer ? "Couper la musique" : "Activer la musique");
+if (jouer) { actx.resume(); melodie(); } else clearTimeout(minut);
+});
+function fumees() {
+for (let i = 0; i < 14; i++) { const f = document.createElement("div"); f.className = "fumee"; const s = 30 + Math.random() * 40; f.style.cssText = `width:${s}px;height:${s}px;left:${40 + Math.random() * 60}px;--dx:${(Math.random() - .5) * 120}px;animation-delay:${Math.random() * .5}s`; $("fumees").appendChild(f); requestAnimationFrame(() => f.classList.add("go")); }
+}
+function ouvrirSite() {
+$("ouverture").classList.add("fini"); document.body.classList.remove("ferme"); $("site").classList.add("visible"); $("musique").style.display = "block";
+document.querySelectorAll("#accueil .revele").forEach(el => el.classList.add("vu")); confettis(150);
+}
+$("btnLancer").addEventListener("click", () => {
+$("btnLancer").style.visibility = "hidden";
+if (calme) { ouvrirSite(); return; }
+const d = $("decompte"), f = $("fusee"); f.classList.add("vibre");
+["3", "2", "1", "🚀"].forEach((n, i) => setTimeout(() => { d.textContent = n; d.classList.remove("tic"); void d.offsetWidth; d.classList.add("tic"); if (n === "1") fumees(); }, i * 900));
+setTimeout(() => { f.classList.remove("vibre"); f.classList.add("decolle"); fumees(); }, 3000);
+setTimeout(ouvrirSite, 4700);
+});
+</script>
+</body>
+</html>

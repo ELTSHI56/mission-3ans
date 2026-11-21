@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Liste des invités — Mission 3 ans</title>
+<meta name="theme-color" content="#14123A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Righteous&family=Nunito:wght@600;700;800&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--nuit:#14123A;--nuit2:#1F1B57;--soleil:#FFC93C;--orange:#FF8A3D;--turquoise:#2ED8C3;--doux:#6E6886;--fond:#F5F3FC;--violet:#4B2E83;--rouge:#E5484D;--vert:#1DA851}
+*{box-sizing:border-box;margin:0;padding:0}
+[hidden]{display:none!important}
+body{font-family:"Nunito",system-ui,sans-serif;background:var(--fond);color:var(--nuit);min-height:100vh}
+header{background:linear-gradient(135deg,var(--nuit),#2C2775);color:#fff;padding:22px 20px 26px}
+.haut{max-width:980px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
+h1{font-family:"Righteous";font-weight:400;font-size:clamp(1.3rem,5vw,1.8rem)}
+h1 small{display:block;font-family:"Nunito";font-weight:700;font-size:.9rem;color:#B9B3E6;margin-top:2px}
+main{max-width:980px;margin:-14px auto 0;padding:0 16px 40px}
+.carte{background:#fff;border-radius:20px;box-shadow:0 8px 24px rgba(20,18,58,.08);padding:20px}
+#porte{max-width:420px;margin:30px auto;text-align:center}
+#porte p{color:var(--doux);font-weight:700;margin:6px 0 16px}
+input{width:100%;padding:13px 14px;border-radius:14px;border:2px solid #E6E0F5;font:800 1.05rem "Nunito";color:var(--nuit);outline:none;text-align:center;letter-spacing:.06em}
+input:focus{border-color:var(--orange)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:none;cursor:pointer;font:800 .95rem "Nunito";padding:11px 16px;border-radius:999px;color:var(--nuit);background:var(--soleil);box-shadow:0 4px 0 #D89E14;text-decoration:none}
+.btn:active{transform:translateY(2px);box-shadow:0 2px 0 #D89E14}
+.btn.sec{background:#EEEAFB;box-shadow:0 4px 0 #D5CEF2}
+.btn.plein{width:100%;margin-top:12px;padding:14px}
+.erreur{color:var(--rouge);font-weight:800;margin-top:10px;min-height:1.2em}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:16px}
+@media(min-width:720px){.stats{grid-template-columns:repeat(5,1fr)}}
+.stat{background:#fff;border-radius:18px;padding:16px;box-shadow:0 8px 24px rgba(20,18,58,.06)}
+.stat b{display:block;font-family:"Space Grotesk";font-size:2rem;line-height:1.1;color:var(--c,var(--nuit))}
+.stat span{font-weight:800;color:var(--doux);font-size:.85rem}
+.stat.grand{background:linear-gradient(135deg,var(--orange),var(--soleil));grid-column:1/-1}
+@media(min-width:720px){.stat.grand{grid-column:auto}}
+.stat.grand b,.stat.grand span{color:var(--nuit)}
+.outils{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:14px}
+.outils input{flex:1 1 200px;text-align:left;letter-spacing:0;font-weight:700;padding:10px 14px}
+.filtres{display:flex;gap:6px}
+.filtres button{border:2px solid #E6E0F5;background:#fff;border-radius:999px;padding:8px 12px;font:800 .85rem "Nunito";cursor:pointer;color:var(--doux)}
+.filtres button.actif{border-color:var(--nuit);color:var(--nuit)}
+table{width:100%;border-collapse:collapse}
+th{text-align:left;font-family:"Space Grotesk";font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--doux);padding:10px 8px;border-bottom:2px solid #EEEAFB}
+td{padding:12px 8px;border-bottom:1px solid #F1EEFA;font-weight:700;vertical-align:top}
+td.n{text-align:center;font-family:"Space Grotesk"}
+.pastille{display:inline-block;padding:3px 10px;border-radius:999px;font-size:.78rem;font-weight:800}
+.oui{background:#DFF7EC;color:var(--vert)}.non{background:#FDE7E8;color:var(--rouge)}
+.petit{display:block;color:var(--doux);font-size:.82rem;font-weight:700;margin-top:2px}
+.suppr{border:none;background:none;cursor:pointer;font-size:1.05rem;opacity:.5}
+.suppr:hover{opacity:1}
+.vide{text-align:center;color:var(--doux);font-weight:800;padding:30px 10px}
+.maj{color:var(--doux);font-weight:700;font-size:.82rem;margin-top:10px;text-align:right}
+@media(max-width:640px){
+thead{display:none} table,tbody,tr,td{display:block;width:100%}
+tr{background:#fff;border:1px solid #EEEAFB;border-radius:16px;margin-bottom:10px;padding:10px 12px;position:relative}
+td{border:none;padding:3px 0} td.n{display:inline-block;width:auto;margin-right:12px;text-align:left}
+td.n::before{content:attr(data-l) " : ";color:var(--doux);font-family:"Nunito";font-size:.85rem}
+td.act{position:absolute;top:8px;right:8px;width:auto}
+}
+footer{text-align:center;padding:10px 16px 34px;color:var(--doux);font-size:.82rem}
+.signature{display:inline-flex;flex-direction:column;align-items:center;gap:4px;text-decoration:none;color:var(--doux)}
+.signature .tel{font-family:"Space Grotesk";font-weight:700;color:var(--violet)}
+@media print{header .btn,.outils,.suppr,td.act,#porte{display:none!important}body{background:#fff}.carte,.stat{box-shadow:none;border:1px solid #ddd}main{margin-top:10px}}
+</style>
+</head>
+<body>
+<header>
+<div class="haut">
+<h1>Liste des invités<small>Mission 3 ans — réponses reçues</small></h1>
+<button class="btn sec" id="btnSortir" hidden>🔒 Quitter</button>
+</div>
+</header>
+<main>
+<form class="carte" id="porte">
+<div style="font-size:2.4rem">🔐</div>
+<h2 style="font-family:Righteous;font-weight:400">Accès réservé</h2>
+<p>Entre le code d’accès remis par EL TSHI DIGIT pour voir qui vient à la fête.</p>
+<input id="code" autocomplete="off" autocapitalize="characters" placeholder="Code d’accès" aria-label="Code d’accès">
+<button class="btn plein" type="submit">Voir la liste</button>
+<p class="erreur" id="erreur"></p>
+</form>
+<div id="tableau" hidden>
+<div class="stats">
+<div class="stat grand"><b id="sTotal">0</b><span>personnes attendues</span></div>
+<div class="stat" style="--c:var(--nuit)"><b id="sAdultes">0</b><span>adultes</span></div>
+<div class="stat" style="--c:var(--orange)"><b id="sEnfants">0</b><span>enfants</span></div>
+<div class="stat" style="--c:var(--vert)"><b id="sOui">0</b><span>familles qui viennent</span></div>
+<div class="stat" style="--c:var(--rouge)"><b id="sNon">0</b><span>ne viendront pas</span></div>
+</div>
+<div class="carte">
+<div class="outils">
+<input id="recherche" placeholder="🔎 Rechercher un nom…" aria-label="Rechercher un nom">
+<div class="filtres" id="filtres">
+<button type="button" data-f="tous" class="actif">Tous</button>
+<button type="button" data-f="oui">Viennent</button>
+<button type="button" data-f="non">Absents</button>
+</div>
+<button class="btn sec" id="btnActu" type="button">🔄 Actualiser</button>
+<button class="btn sec" id="btnCsv" type="button">⬇️ Excel (CSV)</button>
+<button class="btn" id="btnImprimer" type="button">🖨️ Imprimer</button>
+</div>
+<table>
+<thead><tr><th>#</th><th>Nom / famille</th><th>Réponse</th><th>Adultes</th><th>Enfants</th><th>Total</th><th></th></tr></thead>
+<tbody id="lignes"></tbody>
+</table>
+<p class="maj" id="maj"></p>
+</div>
+</div>
+</main>
+<footer>
+<a class="signature" href="https://wa.me/243844195449" target="_blank" rel="noopener">
+<svg width="56" height="64" viewBox="0 0 96 110" aria-hidden="true">
+<rect x="30" y="4" width="10" height="46" fill="#4B2E83"/><rect x="30" y="4" width="36" height="10" fill="#4B2E83"/>
+<rect x="30" y="22" width="29" height="10" fill="#4B2E83"/><rect x="30" y="40" width="36" height="10" fill="#4B2E83"/>
+<rect x="45" y="22" width="16" height="10" fill="#FF7A59"/><circle cx="74" cy="45" r="5" fill="#FF7A59"/>
+<text x="48" y="76" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="20" fill="#4B2E83">EL TSHI</text>
+<rect x="20" y="85" width="56" height="20" rx="10" fill="#4B2E83"/>
+<text x="48" y="99.5" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="12" fill="#fff" letter-spacing="1.5">DIGIT</text>
+</svg>
+<span>Invitation digitale EL TSHI DIGIT</span>
+<span class="tel">+243 844 195 449</span>
+</a>
+</footer>
+<script>
+const BASE = { url: "https://iwyvjhumcmuweutlkzax.supabase.co", cle: "sb_publishable_8czJKygsq_BLi43RkrAYoA_fAZ25tkr", evenement: "mission-3ans" };
+const $ = id => document.getElementById(id);
+let code = "", donnees = [], filtre = "tous";
+const memo = { get: () => { try { return sessionStorage.getItem("code-" + BASE.evenement) || ""; } catch (e) { return ""; } }, set: v => { try { v ? sessionStorage.setItem("code-" + BASE.evenement, v) : sessionStorage.removeItem("code-" + BASE.evenement); } catch (e) {} } };
+const esc = t => String(t ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+async function rpc(nom, corps) {
+const r = await fetch(`${BASE.url}/rest/v1/rpc/${nom}`, { method: "POST", headers: { "Content-Type": "application/json", apikey: BASE.cle, Authorization: `Bearer ${BASE.cle}` }, body: JSON.stringify(corps) });
+const j = await r.json().catch(() => null);
+if (!r.ok) throw new Error((j && j.message) || "Erreur " + r.status);
+return j;
+}
+async function charger() {
+donnees = await rpc("liste_reponses", { p_evenement: BASE.evenement, p_code: code });
+afficher();
+$("maj").textContent = "Mis à jour à " + new Date().toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" });
+}
+function afficher() {
+const viennent = donnees.filter(d => d.presence);
+const ad = viennent.reduce((s, d) => s + d.adultes, 0), en = viennent.reduce((s, d) => s + d.enfants, 0);
+$("sTotal").textContent = ad + en; $("sAdultes").textContent = ad; $("sEnfants").textContent = en;
+$("sOui").textContent = viennent.length; $("sNon").textContent = donnees.length - viennent.length;
+const q = $("recherche").value.trim().toLowerCase();
+const liste = donnees.filter(d => (filtre === "tous" || (filtre === "oui") === d.presence) && (!q || d.nom.toLowerCase().includes(q)));
+if (!liste.length) { $("lignes").innerHTML = `<tr><td colspan="7" class="vide">${donnees.length ? "Aucun résultat." : "Aucune réponse pour le moment. Partage le lien de l’invitation ! 🚀"}</td></tr>`; return; }
+$("lignes").innerHTML = liste.map((d, i) => `<tr>
+<td class="n" data-l="N°">${liste.length - i}</td>
+<td>${esc(d.nom)}${d.telephone ? `<span class="petit">📞 ${esc(d.telephone)}</span>` : ""}${d.message ? `<span class="petit">💬 ${esc(d.message)}</span>` : ""}<span class="petit">${new Date(d.created_at).toLocaleString("fr-FR", { day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" })}</span></td>
+<td><span class="pastille ${d.presence ? "oui" : "non"}">${d.presence ? "Vient" : "Absent"}</span></td>
+<td class="n" data-l="Adultes">${d.adultes}</td><td class="n" data-l="Enfants">${d.enfants}</td><td class="n" data-l="Total"><b>${d.adultes + d.enfants}</b></td>
+<td class="act"><button class="suppr" data-id="${d.id}" title="Supprimer (doublon)" aria-label="Supprimer la réponse de ${esc(d.nom)}">🗑️</button></td></tr>`).join("");
+}
+$("porte").addEventListener("submit", async e => {
+e.preventDefault(); code = $("code").value.trim().toUpperCase(); $("erreur").textContent = "";
+if (!code) return;
+try { await charger(); memo.set(code); $("porte").hidden = true; $("tableau").hidden = false; $("btnSortir").hidden = false; }
+catch (err) { $("erreur").textContent = /code/i.test(err.message) ? "Code incorrect." : "Connexion impossible, réessaie."; }
+});
+$("recherche").addEventListener("input", afficher);
+$("filtres").addEventListener("click", e => { const f = e.target.dataset.f; if (!f) return; filtre = f; [...$("filtres").children].forEach(b => b.classList.toggle("actif", b.dataset.f === f)); afficher(); });
+$("btnActu").addEventListener("click", () => charger().catch(() => alert("Connexion impossible, réessaie.")));
+$("btnImprimer").addEventListener("click", () => print());
+$("btnSortir").addEventListener("click", () => { memo.set(""); location.reload(); });
+$("lignes").addEventListener("click", async e => {
+const id = e.target.dataset.id; if (!id) return; const d = donnees.find(x => String(x.id) === id);
+if (!confirm(`Supprimer la réponse de « ${d.nom} » ? (à utiliser pour les doublons)`)) return;
+try { await rpc("supprimer_reponse", { p_evenement: BASE.evenement, p_code: code, p_id: +id }); await charger(); } catch (err) { alert("Suppression impossible."); }
+});
+$("btnCsv").addEventListener("click", () => {
+const l = [["N°", "Nom", "Réponse", "Adultes", "Enfants", "Total", "Téléphone", "Message", "Date"]].concat(donnees.slice().reverse().map((d, i) => [i + 1, d.nom, d.presence ? "Vient" : "Absent", d.adultes, d.enfants, d.adultes + d.enfants, d.telephone || "", d.message || "", new Date(d.created_at).toLocaleString("fr-FR")]));
+const csv = "﻿" + l.map(r => r.map(c => `"${String(c).replace(/"/g, '""')}"`).join(";")).join("\r\n");
+const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" })); a.download = "liste-invites-mission-3ans.csv"; a.click();
+});
+const enMemoire = memo.get(); if (enMemoire) { $("code").value = enMemoire; $("porte").requestSubmit(); }
+setInterval(() => { if (!$("tableau").hidden) charger().catch(() => {}); }, 60000);
+</script>
+</body>
+</html>
