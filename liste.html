@@ -174,7 +174,7 @@ try { await rpc("supprimer_reponse", { p_evenement: BASE.evenement, p_code: code
 });
 $("btnCsv").addEventListener("click", () => {
 const l = [["N°", "Nom", "Réponse", "Adultes", "Enfants", "Total", "Téléphone", "Message", "Date"]].concat(donnees.slice().reverse().map((d, i) => [i + 1, d.nom, d.presence ? "Vient" : "Absent", d.adultes, d.enfants, d.adultes + d.enfants, d.telephone || "", d.message || "", new Date(d.created_at).toLocaleString("fr-FR")]));
-const csv = "﻿" + l.map(r => r.map(c => `"${String(c).replace(/"/g, '""')}"`).join(";")).join("\r\n");
+const csv = "﻿" + l.map(r => r.map(c => { let t = String(c ?? ""); if (/^[=+\-@\t\r]/.test(t)) t = "'" + t; return `"${t.replace(/"/g, '""')}"`; }).join(";")).join("\r\n");
 const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv;charset=utf-8" })); a.download = "liste-invites-mission-3ans.csv"; a.click();
 });
 const enMemoire = memo.get(); if (enMemoire) { $("code").value = enMemoire; $("porte").requestSubmit(); }

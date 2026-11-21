@@ -457,7 +457,7 @@ const qLieu = [INFOS.lieuNom, INFOS.adresse].filter(Boolean).join(", ");
 $("lieuNom").innerHTML = INFOS.lieuNom || avenir("Lieu bientôt annoncé");
 $("lieuAdr").textContent = INFOS.adresse;
 if (qLieu) {
-$("carteMap").innerHTML = `<iframe loading="lazy" title="Carte du lieu" src="https://www.google.com/maps?q=${encodeURIComponent(qLieu)}&output=embed"></iframe>`;
+$("carteMap").innerHTML = `<iframe loading="lazy" referrerpolicy="no-referrer" title="Carte du lieu" src="https://www.google.com/maps?q=${encodeURIComponent(qLieu)}&output=embed"></iframe>`;
 $("btnItin").href = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(qLieu)}`;
 } else { $("carteMap").textContent = "🛰️ La carte s’affichera ici"; $("btnItin").setAttribute("aria-disabled", "true"); }
 $("themeTxt").innerHTML = `Thème : <b>${INFOS.theme}</b>`;
