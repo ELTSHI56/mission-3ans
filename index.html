@@ -7,26 +7,26 @@
 <meta name="description" content="Invitation : décollage pour mes 3 ans ! — EL TSHI DIGIT">
 <meta property="og:title" content="🚀 Mission 3 ans d’Anaëlle : tu es invité(e) à bord !">
 <meta property="og:description" content="Lance la fusée pour découvrir l’invitation.">
-<meta name="theme-color" content="#14123A">
+<meta name="theme-color" content="#0B080C">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Righteous&family=Nunito:wght@600;700;800&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
 <style>
 :root{
---nuit:#14123A; --nuit2:#1F1B57; --nuit3:#2C2775; --etoile:#FFF6D8; --soleil:#FFC93C; --orange:#FF8A3D; --rouge:#FF5A5F;
---turquoise:#2ED8C3; --bleu:#4DA8FF; --lune:#E9E4FF; --texte:#F4F2FF; --doux:#B9B3E6;
+--nuit:#0B080C; --nuit2:#1C0E18; --nuit3:#5A2147; --etoile:#FFF6D8; --soleil:#FFC93C; --orange:#FF8A3D; --rouge:#FF5A5F;
+--turquoise:#FF8FC4; --bleu:#4DA8FF; --lune:#FFE8F3; --texte:#FFFFFF; --doux:#E8C9DA;
 --violet:#4B2E83; --corail:#FF7A59;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 [hidden]{display:none!important}
 html{scroll-behavior:smooth;overflow-x:hidden}
-body{font-family:"Nunito",system-ui,sans-serif;color:var(--texte);background:var(--nuit);overflow-x:hidden;-webkit-tap-highlight-color:transparent}
+body{font-family:"Nunito",system-ui,sans-serif;color:var(--texte);background-color:var(--nuit);background-image:radial-gradient(ellipse 90% 50% at 85% 10%,rgba(255,126,182,.22),transparent 70%),radial-gradient(ellipse 80% 45% at 10% 75%,rgba(255,126,182,.16),transparent 70%),radial-gradient(ellipse 70% 40% at 50% 45%,rgba(255,255,255,.05),transparent 70%);background-attachment:fixed;overflow-x:hidden;-webkit-tap-highlight-color:transparent}
 body.ferme{overflow:hidden;height:100svh}
 h1,h2,h3{font-weight:400}
 img{display:block;max-width:100%}
 button{font-family:inherit}
 #ciel{position:fixed;inset:0;z-index:0;pointer-events:none}
-#ouverture{position:fixed;inset:0;z-index:100;overflow:hidden;background:radial-gradient(ellipse at 50% 110%,#3B2F8F 0,var(--nuit2) 45%,var(--nuit) 100%);display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:max(34px,env(safe-area-inset-bottom));transition:opacity .9s ease,visibility .9s}
+#ouverture{position:fixed;inset:0;z-index:100;overflow:hidden;background:radial-gradient(ellipse at 50% 110%,#8E2F6B 0,var(--nuit2) 45%,var(--nuit) 100%);display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:max(34px,env(safe-area-inset-bottom));transition:opacity .9s ease,visibility .9s}
 #ouverture.fini{opacity:0;visibility:hidden}
 .ouv-titre{position:absolute;top:9%;left:0;right:0;text-align:center;font-family:"Righteous";font-size:clamp(1.3rem,5.5vw,1.8rem);letter-spacing:.04em;padding:0 20px;color:var(--etoile)}
 .ouv-titre small{display:block;font-family:"Nunito";font-weight:700;font-size:.95rem;color:var(--doux);letter-spacing:0;margin-top:6px}
@@ -41,7 +41,7 @@ button{font-family:inherit}
 .flamme-f{transform-origin:50% 0;animation:flammeF .12s ease-in-out infinite alternate;opacity:0;transition:opacity .3s}
 .fusee.vibre .flamme-f,.fusee.decolle .flamme-f{opacity:1}
 @keyframes flammeF{from{transform:scaleY(.85)}to{transform:scaleY(1.2)}}
-.socle{position:absolute;bottom:0;left:0;right:0;height:38px;background:linear-gradient(#5B54A8,#3C3786);border-radius:12px 12px 4px 4px}
+.socle{position:absolute;bottom:0;left:0;right:0;height:38px;background:linear-gradient(#F4F0F2,#C9BFC5);border-radius:12px 12px 4px 4px}
 .socle::before{content:"";position:absolute;left:18px;right:18px;top:8px;height:4px;border-radius:2px;background:repeating-linear-gradient(90deg,var(--soleil) 0 12px,var(--nuit) 12px 24px)}
 .fumee{position:absolute;bottom:20px;border-radius:50%;background:#fff;opacity:0;filter:blur(2px)}
 .fumee.go{animation:fumee 1.6s ease-out forwards}
@@ -54,7 +54,7 @@ button{font-family:inherit}
 #site.visible{opacity:1}
 section{position:relative;padding:56px 20px}
 .contenu{max-width:760px;margin:0 auto}
-.badge{display:table;margin:0 auto 10px;font-family:"Space Grotesk";font-weight:700;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--turquoise);border:1.5px solid rgba(46,216,195,.5);padding:5px 12px;border-radius:999px}
+.badge{display:table;margin:0 auto 10px;font-family:"Space Grotesk";font-weight:700;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--turquoise);border:1.5px solid rgba(255,126,182,.5);padding:5px 12px;border-radius:999px}
 .titre-section{text-align:center;font-family:"Righteous";font-size:clamp(1.8rem,7vw,2.5rem);line-height:1.1;margin-bottom:8px;color:var(--etoile)}
 .titre-section .mot{display:inline-block;white-space:nowrap}
 .titre-section .l{display:inline-block;opacity:0;transform:translateY(20px) scale(.5)}
@@ -84,9 +84,9 @@ section{position:relative;padding:56px 20px}
 .prenom{position:relative;z-index:2;font-family:"Baloo 2";font-weight:800;font-size:clamp(2.6rem,12vw,4.2rem);line-height:1;margin-top:6px;color:#fff;text-shadow:0 0 24px rgba(255,201,60,.35)}
 .phrase{position:relative;z-index:2;font-family:"Righteous";font-size:clamp(1.15rem,5vw,1.5rem);color:var(--soleil);margin-top:8px}
 .date-accueil{position:relative;z-index:2;margin-top:8px;font-weight:800;color:var(--doux)}
-.ecran{position:relative;z-index:2;display:inline-flex;gap:6px;margin-top:22px;padding:12px;border-radius:20px;background:#0B0A26;border:2px solid #3C3786;box-shadow:inset 0 0 20px rgba(46,216,195,.12)}
+.ecran{position:relative;z-index:2;display:inline-flex;gap:6px;margin-top:22px;padding:12px;border-radius:20px;background:#050405;border:2px solid #FF7EB6;box-shadow:inset 0 0 20px rgba(255,126,182,.18)}
 .ecran .c{width:68px;padding:6px 0;text-align:center}
-.ecran b{display:block;font-family:"Space Grotesk";font-weight:700;font-size:1.9rem;color:var(--turquoise);text-shadow:0 0 12px rgba(46,216,195,.6)}
+.ecran b{display:block;font-family:"Space Grotesk";font-weight:700;font-size:1.9rem;color:var(--turquoise);text-shadow:0 0 12px rgba(255,126,182,.6)}
 .ecran small{font-size:.7rem;font-weight:800;letter-spacing:.1em;color:var(--doux);text-transform:uppercase}
 .ecran.attente{padding:14px 20px;font-family:"Space Grotesk";font-weight:700;color:var(--turquoise);font-size:.92rem;max-width:320px}
 .gateau-zone{position:relative;z-index:2;margin-top:26px}
@@ -136,7 +136,7 @@ section{position:relative;padding:56px 20px}
 .theme-txt b{color:#fff}
 .pastilles{display:flex;justify-content:center;gap:18px;margin:18px 0 10px}
 .pastilles div{text-align:center;font-weight:800;font-size:.82rem;color:var(--doux)}
-.pastilles i{display:block;width:62px;height:62px;border-radius:50%;margin:0 auto 6px;background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.55),var(--c) 60%);box-shadow:0 0 20px var(--c)}
+.pastilles i{display:block;width:62px;height:62px;border-radius:50%;border:2px solid rgba(255,255,255,.45);margin:0 auto 6px;background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.55),var(--c) 60%);box-shadow:0 0 20px var(--c)}
 .cadeaux{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
 .cadeau{text-align:center;font-weight:800;padding:18px 12px}
 .cadeau span{display:block;font-size:2rem;margin-bottom:4px}
@@ -181,7 +181,7 @@ footer{position:relative;z-index:1;text-align:center;padding:30px 20px 34px}
 .hashtag{font-family:"Baloo 2";font-weight:800;color:var(--soleil);font-size:1.2rem;margin-top:4px}
 .signature{margin:34px auto 0;padding:18px 26px;border-radius:22px;background:#fff;display:inline-flex;flex-direction:column;align-items:center;gap:6px;color:#6E6886;font-size:.82rem;text-decoration:none}
 .signature .tel{font-family:"Space Grotesk";font-weight:700;color:var(--violet);font-size:1rem}
-#musique{position:fixed;right:14px;bottom:14px;z-index:110;width:48px;height:48px;border-radius:50%;border:1.5px solid rgba(255,255,255,.25);background:rgba(20,18,58,.8);color:#fff;font-size:1.25rem;cursor:pointer;display:block;backdrop-filter:blur(6px)}
+#musique{position:fixed;right:14px;bottom:14px;z-index:110;width:48px;height:48px;border-radius:50%;border:1.5px solid rgba(255,255,255,.25);background:rgba(11,8,12,.8);color:#fff;font-size:1.25rem;cursor:pointer;display:block;backdrop-filter:blur(6px)}
 #confetti{position:fixed;inset:0;pointer-events:none;z-index:120}
 .eclat{position:fixed;pointer-events:none;font-size:18px;z-index:60;animation:eclat .75s ease-out forwards}
 @keyframes eclat{to{transform:translate(var(--dx),var(--dy)) scale(.3) rotate(180deg);opacity:0}}
@@ -405,7 +405,7 @@ init(); addEventListener("resize", init);
 let t = 0;
 (function loop() {
 t += .02; x.clearRect(0, 0, W, H);
-etoiles.forEach(s => { x.globalAlpha = calme ? .8 : .45 + .45 * Math.sin(t * 2 + s.p); x.fillStyle = "#FFF6D8"; x.beginPath(); x.arc(s.x, s.y, s.r, 0, 7); x.fill(); });
+etoiles.forEach(s => { x.globalAlpha = calme ? .8 : .45 + .45 * Math.sin(t * 2 + s.p); x.fillStyle = s.r > 1.3 ? "#FFB3D6" : "#FFFFFF"; x.beginPath(); x.arc(s.x, s.y, s.r, 0, 7); x.fill(); });
 if (!calme && Math.random() < .006) filantes.push({ x: Math.random() * W * .8 + W * .2, y: Math.random() * H * .4, v: 9 + Math.random() * 5, l: 1 });
 filantes.forEach(f => { x.globalAlpha = f.l; const g = x.createLinearGradient(f.x, f.y, f.x + 80, f.y - 40); g.addColorStop(0, "#fff"); g.addColorStop(1, "rgba(255,255,255,0)"); x.strokeStyle = g; x.lineWidth = 2; x.beginPath(); x.moveTo(f.x, f.y); x.lineTo(f.x + 80, f.y - 40); x.stroke(); f.x -= f.v; f.y += f.v / 2; f.l -= .015; });
 filantes = filantes.filter(f => f.l > 0); x.globalAlpha = 1;
